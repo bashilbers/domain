@@ -1,0 +1,26 @@
+{
+    "name": "bashilbers/domain",
+    "version": "0.0.1",
+    "description": "Adds interfaces and base classes for DomainEvents, Aggregates, Snapshotting (the write part of CQRS). Modeled after DPC14",
+    "authors": [
+        {
+            "name": "Bas Hilbers",
+            "email": "bas.hilbers@adchieve.com"
+        }
+    ],
+    "suggest": {
+        "predis/predis": "For saving DomainEvents in Redis",
+        "symfony/finder": "For file based event/snapshot stores"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7",
+        "symfony/finder": "~2.5",
+        "predis/predis": "*"
+    },
+    "autoload": {
+        "psr-4": { 
+            "Domain\\": "src/", 
+            "Domain\\Tests\\": "tests/" 
+        }
+    }
+}
