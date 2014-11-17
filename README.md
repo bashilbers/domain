@@ -14,3 +14,4 @@ Other DDD, CQRS and Event Sourcing projects in PHP
 * [Goodby EventSourcing](https://github.com/goodby/event-sourcing) - EventSourcing
 * [Governor](https://github.com/davidkalosi/GovernorFramework) - A complete PHP CQRS framework
 * [Buttercup.Protects](https://github.com/buttercup-php/protects) - Aggregate business rules protection library
+* [Broadway](https://github.com/qandidate-labs/broadway) - Infrastructure and testing helpers for creating CQRS and event sourced applications.
