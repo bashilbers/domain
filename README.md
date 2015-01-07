@@ -15,3 +15,5 @@ Other DDD, CQRS and Event Sourcing projects in PHP
 * [Governor](https://github.com/davidkalosi/GovernorFramework) - A complete PHP CQRS framework
 * [Buttercup.Protects](https://github.com/buttercup-php/protects) - Aggregate business rules protection library
 * [Broadway](https://github.com/qandidate-labs/broadway) - Infrastructure and testing helpers for creating CQRS and event sourced applications.
+* [Chief](https://github.com/adamnicholson/chief) - Command bus package for PHP
+* [Tactician](https://github.com/rosstuck/tactician) - A small, pluggable command bus. Still in active development.
