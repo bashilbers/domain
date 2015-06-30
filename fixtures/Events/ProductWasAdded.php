@@ -4,7 +4,7 @@ namespace Domain\Tests\Fixtures\Events;
 
 use Domain\Tests\Fixtures\Identity\BasketId;
 use Domain\Tests\Fixtures\Identity\ProductId;
-use Domain\Events\DomainEvent;
+use Domain\Eventing\DomainEvent;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>

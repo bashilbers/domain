@@ -14,7 +14,7 @@ class CommittedEvents extends AbstractEventStream
 
     private $toVersion;
 
-    public function __construct(Identity $identity, $events)
+    public function __construct(Identity $identity, array $events = [])
     {
         $this->identity = $identity;
 

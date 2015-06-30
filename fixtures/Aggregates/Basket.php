@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tests\Fixtures\Aggregates;
+namespace Domain\Fixtures\Aggregates;
 
 use Domain\Tests\Fixtures\Identity\BasketId;
 use Domain\Tests\Fixtures\Identity\ProductId;

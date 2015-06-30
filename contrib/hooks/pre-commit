@@ -1,0 +1,42 @@
+#!/bin/bash
+
+GITROOT=$(git rev-parse --show-toplevel)
+
+function error {
+  echo -e "\033[31mERROR\e[0m | $1" >&2 && exit 1;
+}
+
+function warning {
+  echo -e "\033[93mWARNING\e[0m | $1" >&2;
+}
+
+# Check for syntax errors.
+git diff --cached --name-only | while read FILE; do
+if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+    if [[ -f $FILE ]]; then
+        php -l "$FILE"
+        if [ $? -ne 0 ]; then
+            error "Aborting commit due to files with syntax errors!"
+        fi
+    fi
+fi
+done || exit $?
+
+# Check the coding standards.
+git diff --cached --name-only | while read FILE; do
+if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+    php $GITROOT/bin/phpcs --standard=PSR2 "$FILE"
+    if [ $? -ne 0 ]; then
+        warning "some files do not respecting the coding standards. Commit was not aborted, however."
+    fi
+fi
+done
+
+git diff --cached --name-only | while read FILE; do
+if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+    php $GITROOT/bin/phpmd "$FILE"
+    if [ $? -ne 0 ]; then
+        warning "mess detected! Commit was not aborted, however."
+    fi
+fi
+done

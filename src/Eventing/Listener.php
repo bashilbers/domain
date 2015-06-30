@@ -5,7 +5,7 @@ namespace Domain\Events;
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
  */
-interface EventBus
+interface Listener
 {
-    public function publish(CommittedEvents $events);
+    public function handle(DomainEvent $event);
 }
