@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Domain\Events\Exception;
+namespace Domain\Eventing\Exception;
 
 /**
  * Description of CorruptCommitedEventCollection

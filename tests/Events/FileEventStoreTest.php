@@ -5,7 +5,7 @@ namespace Domain\Tests\Events;
 use Domain\Tests\Fixtures\Identity\BasketId;
 use Domain\Tests\Fixtures\Identity\ProductId;
 use Domain\Tests\Fixtures\Aggregates\Basket;
-use Domain\Events\FileEventStore;
+use Domain\Eventing\FileEventStore;
 
 use Symfony\Component\Finder\Finder;
 

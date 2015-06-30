@@ -1,7 +1,5 @@
 #!/bin/bash
 
-GITROOT=$(git rev-parse --show-toplevel)
-
 function error {
   echo -e "\033[31mERROR\e[0m | $1" >&2 && exit 1;
 }
@@ -10,33 +8,53 @@ function warning {
   echo -e "\033[93mWARNING\e[0m | $1" >&2;
 }
 
-# Check for syntax errors.
-git diff --cached --name-only | while read FILE; do
-if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
-    if [[ -f $FILE ]]; then
-        php -l "$FILE"
-        if [ $? -ne 0 ]; then
-            error "Aborting commit due to files with syntax errors!"
+GITROOT=$(git rev-parse --show-toplevel)
+STAGED_FILES_CMD=`git diff --cached --name-only --diff-filter=ACMR HEAD | grep \\\\.php`
+SFILES=${SFILES:-$STAGED_FILES_CMD}
+
+# Determine if a file list is passed
+if [ "$#" -eq 1 ]
+then
+    oIFS=$IFS
+    IFS='
+    '
+    SFILES="$1"
+    IFS=$oIFS
+fi
+SFILES=${SFILES:-$STAGED_FILES_CMD}
+
+echo "Checking for PHP syntax errors..."
+for FILE in $SFILES
+do
+    php -l -d display_errors=0 $GITROOT/$FILE
+    if [ $? != 0 ]
+    then
+        error "Aborting commit due to files with syntax errors!"
+    fi
+    FILES="$FILES $GITROOT/$FILE"
+done
+
+if [ "$FILES" != "" ]
+then
+    echo "Running Code Sniffer..."
+    ./vendor/bin/phpcs --standard=PSR2 --encoding=utf-8 -n -p $FILES
+    if [ $? != 0 ]
+    then
+        error "Aborting commit due to files not respecting the coding standard"
+    fi
+fi
+
+if [ "$FILES" != "" ]
+then
+    echo "Running mess detector..."
+    for FILE in $SFILES
+    do
+        php ./vendor/bin/phpmd "$FILE"
+        if [ $? != 0 ]
+        then
+            warning "Mess detected! Commit was not aborted"
         fi
-    fi
+    done
 fi
-done || exit $?
 
-# Check the coding standards.
-git diff --cached --name-only | while read FILE; do
-if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
-    php $GITROOT/bin/phpcs --standard=PSR2 "$FILE"
-    if [ $? -ne 0 ]; then
-        warning "some files do not respecting the coding standards. Commit was not aborted, however."
-    fi
-fi
-done
-
-git diff --cached --name-only | while read FILE; do
-if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
-    php $GITROOT/bin/phpmd "$FILE"
-    if [ $? -ne 0 ]; then
-        warning "mess detected! Commit was not aborted, however."
-    fi
-fi
-done
+exit $?

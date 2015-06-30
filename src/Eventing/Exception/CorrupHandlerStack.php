@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Events\Exception;
+namespace Domain\Eventing\Exception;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>

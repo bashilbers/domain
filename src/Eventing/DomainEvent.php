@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 /**
  * Something that happened in the past, that is of importance to the business.
@@ -9,6 +9,9 @@ namespace Domain\Events;
  */
 interface DomainEvent extends \Serializable
 {
+    /**
+     * @return Identity
+     */
     public function getAggregateIdentity();
 
     public function getRecordedOn();

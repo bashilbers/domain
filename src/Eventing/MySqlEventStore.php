@@ -1,9 +1,9 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 use Domain\Identity\Identity;
-use Domain\Events\CommittedEvents;
+use Domain\Eventing\CommittedEvents;
 use Domain\Tools\ClassToString;
 
 use Doctrine\DBAL\DriverManager;
@@ -112,7 +112,7 @@ class MySqlEventStore implements EventStore
 
         return new CommittedEvents(
             $id,
-            array_map(function($row) {
+            array_map(function ($row) {
                 return unserialize($row['data']);
             }, $stmt->fetchAll(\PDO::FETCH_ASSOC))
         );

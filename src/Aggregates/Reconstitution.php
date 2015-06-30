@@ -2,7 +2,7 @@
 
 namespace Domain\Aggregates;
 
-use Domain\Events\CommittedEvents;
+use Domain\Eventing\CommittedEvents;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
@@ -16,7 +16,7 @@ trait Reconstitution
     public static function reconstituteFrom(CommittedEvents $history)
     {
         /** @var $instance Reconstitution */
-        $instance = new static($history->getIdentity());
+        $instance = static::fromIdentity($history->getIdentity());
         $instance->whenAll($history); // trait will call when{format}(event)
 
         return $instance;

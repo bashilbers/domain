@@ -1,9 +1,9 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 use Domain\Identity\Identity;
-use Domain\Events\Exception\CorruptAggregateHistory;
+use Domain\Eventing\Exception\CorruptAggregateHistory;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
@@ -14,24 +14,22 @@ class CommittedEvents extends AbstractEventStream
 
     private $toVersion;
 
-    public function __construct(Identity $identity, array $events = [])
+    public function __construct(Identity $identity, array $events)
     {
         $this->identity = $identity;
 
         foreach ($events as $event) {
-            if (!$event instanceof DomainEvent) {
-                throw new \InvalidArgumentException("DomainEvent expected");
-            }
-
-            if(!$event->getAggregateIdentity()->equals($identity)) {
+            if (!$event instanceof DomainEvent || !$event->getAggregateIdentity()->equals($identity)) {
                 throw new CorruptAggregateHistory;
             }
 
             $this->events[] = $event;
         }
 
-        $this->fromVersion = reset($this->events)->getVersion();
-        $this->toVersion = end($this->events)->getVersion();
+        if (count($events) > 0) {
+            $this->fromVersion = array_shift(array_values($events));
+            $this->toVersion = array_pop(array_values($events));
+        }
 
         reset($this->events);
     }

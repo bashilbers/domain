@@ -2,10 +2,10 @@
 
 namespace Domain\Aggregates;
 
-use Domain\Events\DomainEvent;
+use Domain\Eventing\DomainEvent;
 
 /**
- * Domain Events describe things that have happened, but where do they come from?
+ * Domain Eventing describe things that have happened, but where do they come from?
  * Wouldn’t it be nice if we could make the objects themselves responsible for recording
  * whatever happened to them? We can, by implementing the RecordsEvents interface.
  *
@@ -23,14 +23,14 @@ interface RecordsEvents
     public function hasChanges();
 
     /**
-     * Get all the Domain Events that were recorded since the last time it was cleared, or since it was
+     * Get all the Domain Eventing that were recorded since the last time it was cleared, or since it was
      * restored from persistence. This does not include events that were recorded prior.
-     * @return UncommitedChanges
+     * @return UncommittedEvents
      */
     public function getChanges();
 
     /**
-     * Clears the record of new Domain Events. This doesn't clear the history of the object.
+     * Clears the record of new Domain Eventing. This doesn't clear the history of the object.
      * @return void
      */
     public function clearChanges();

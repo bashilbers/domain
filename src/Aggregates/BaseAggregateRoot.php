@@ -3,7 +3,7 @@
 namespace Domain\Aggregates;
 
 use Domain\Identity\Identity;
-use Domain\Events\When\ConventionBasedWhen;
+use Domain\Eventing\When\ConventionBasedWhen;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
@@ -18,9 +18,14 @@ abstract class BaseAggregateRoot implements AggregateRoot
 
     private $version = 0;
 
-    public function __construct(Identity $id)
+    protected function __construct(Identity $id)
     {
         $this->identity = $id;
+    }
+
+    public static function fromIdentity(Identity $id)
+    {
+        return new static($id);
     }
 
     public function getIdentity()

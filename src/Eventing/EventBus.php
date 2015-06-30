@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 use Domain\Eventing\Exception\InvalidMiddlewareException;
 
@@ -16,7 +16,8 @@ class EventBus
 
     public function publish(CommittedEvents $events)
     {
-
+        var_dump($events);
+        exit;
     }
 
     private function createExecutionChain(array $middlewareList)

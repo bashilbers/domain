@@ -2,8 +2,8 @@
 
 namespace Domain\Aggregates;
 
-use Domain\Events\DomainEvent;
-use Domain\Events\UncommittedEvents;
+use Domain\Eventing\DomainEvent;
+use Domain\Eventing\UncommittedEvents;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>

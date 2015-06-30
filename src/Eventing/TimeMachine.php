@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 use Domain\Identity\Identity;
 use Domain\Tools\ClassToString;
@@ -21,7 +21,7 @@ class TimeMachine
 
     public function attachListeners(array $listeners)
     {
-        foreach($listeners as $event => $listener) {
+        foreach ($listeners as $event => $listener) {
             $this->listeners[$event][] = $listener;
         }
 
@@ -35,12 +35,12 @@ class TimeMachine
         foreach ($events as $event) {
             $method = 'when' . ClassToString::short($event);
 
-            if(!isset($this->listeners[$method])) {
+            if (!isset($this->listeners[$method])) {
                 continue;
             }
 
             if (is_array($this->listeners[$method])) {
-                foreach($this->listeners[$method] as $listener) {
+                foreach ($this->listeners[$method] as $listener) {
                     call_user_func($listener, $event);
                 }
             } else {

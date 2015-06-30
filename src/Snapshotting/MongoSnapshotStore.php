@@ -23,8 +23,7 @@ class MongoSnapshotStore implements SnapshotStore
             ->find(['identity' => (string) $id])
             ->sort(['creation_date' => -1])
             ->limit(1)
-            ->getNext()
-        ;
+            ->getNext();
 
         $snapshot = new Snapshot(
             unserialize($data['aggregate']),

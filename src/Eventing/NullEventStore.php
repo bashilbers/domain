@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 use Domain\Identity\Identity;
 

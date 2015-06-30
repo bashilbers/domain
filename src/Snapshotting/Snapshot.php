@@ -3,7 +3,7 @@
 namespace Domain\Snapshotting;
 
 use Domain\Aggregates\AggregateRoot;
-use Domain\Events\CommittedEvents;
+use Domain\Eventing\CommittedEvents;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>

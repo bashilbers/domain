@@ -5,7 +5,7 @@ namespace Domain\Tests\Events;
 use Domain\Tests\Fixtures\Identity\BasketId;
 use Domain\Tests\Fixtures\Identity\ProductId;
 use Domain\Tests\Fixtures\Aggregates\Basket;
-use Domain\Events\MySqlEventStore;
+use Domain\Eventing\MySqlEventStore;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>

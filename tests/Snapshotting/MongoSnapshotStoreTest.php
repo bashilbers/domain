@@ -6,7 +6,7 @@ use Domain\Tests\Fixtures\Identity\BasketId;
 use Domain\Tests\Fixtures\Aggregates\Basket;
 use Domain\Tests\Fixtures\Repository\BasketRepository;
 use Domain\Aggregates\MongoSnapshotStore;
-use Domain\Events\NullEventStore;
+use Domain\Eventing\NullEventStore;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>

@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Put this file at: .git/hooks/post-checkout
+# and make it executable
+# You can install it system wide too, see http://stackoverflow.com/a/2293578/685587
+
+PREV_COMMIT=$1
+POST_COMMIT=$2
+
+GIT_DIR=$(git rev-parse --git-dir)
+GIT_DIR_MERGE="$GIT_DIR"/rebase-merge
+GIT_DIR_APPLY="$GIT_DIR"/rebase-apply
+
+GIT_MERGE_REBASE=false
+[[ (-d "$GIT_DIR_MERGE" && -f "$GIT_DIR_MERGE/interactive") || -d "$GIT_DIR_APPLY" ]] && GIT_MERGE_REBASE=true
+
+NOCOLOR='\e[0m'
+REDCOLOR='\e[37;41m'
+
+function composer.lock {
+    echo -e "$REDCOLOR composer.lock has changed: running composer install $NOCOLOR"
+
+    COMPOSER=
+    if [ -f composer.phar ]; then
+        COMPOSER="php composer.phar"
+    fi
+
+    which composer > /dev/null 2>&1
+    if [ $? ]; then
+        COMPOSER="composer"
+    fi
+
+    if [[ $GIT_MERGE_REBASE = false && -n "$COMPOSER" ]]; then
+        $COMPOSER install
+    fi
+}
+
+function package.json {
+    echo -e "$REDCOLOR package.json has changed: running npm install $NOCOLOR"
+
+    which npm > /dev/null 2>&1
+    if [[ $GIT_MERGE_REBASE = false && $? ]]; then
+        npm install
+    fi
+}
+
+FUNCS=$(declare -F -p | cut -d " " -f 3)
+for FUNC in $FUNCS
+do
+    DIFF=$(git diff --shortstat $PREV_COMMIT..$POST_COMMIT $FUNC 2>/dev/null)
+    if [[ $DIFF != "" ]]; then
+        $FUNC
+    fi
+done

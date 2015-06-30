@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Events\Exception;
+namespace Domain\Eventing\Exception;
 
 class InvalidMiddlewareException extends \InvalidArgumentException implements Exception
 {

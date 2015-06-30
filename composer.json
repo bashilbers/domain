@@ -10,17 +10,30 @@
     ],
     "suggest": {
         "predis/predis": "For saving DomainEvents in Redis",
-        "symfony/finder": "For file based event/snapshot stores"
+        "symfony/finder": "For file based event/snapshot stores",
+        "league/tactician": "Command handling"
     },
     "require-dev": {
-        "phpunit/phpunit": "~3.7",
+        "phpspec/phpspec": "2.*",
         "symfony/finder": "~2.5",
-        "predis/predis": "*"
+        "predis/predis": "*",
+        "phpmd/phpmd": "2.*",
+        "squizlabs/php_codesniffer": "2.*"
     },
     "autoload": {
         "psr-4": { 
-            "Domain\\": "src/", 
-            "Domain\\Tests\\": "tests/" 
+            "Domain\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Domain\\Tests\\": "tests/",
+            "Domain\\Fixtures\\": "fixtures/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "bash contrib/setup.sh"
+        ]
     }
 }

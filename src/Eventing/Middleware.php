@@ -1,11 +1,11 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 interface Middleware
 {
     /**
-    * @param object   $command
+    * @param DomainEvent   %event
     * @param callable $next
     *
     * @return mixed

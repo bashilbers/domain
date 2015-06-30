@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 use Domain\Identity\Identity;
 
@@ -11,7 +11,7 @@ interface EventStore
 {
     /**
      * @param UncommittedEvents $events
-     * @return void
+     * @return CommittedEvents
      */
     public function commit(UncommittedEvents $events);
 

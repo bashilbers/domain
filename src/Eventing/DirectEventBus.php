@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
-use Domain\Events\Exception\CorrupHandlerStack;
+use Domain\Eventing\Exception\CorrupHandlerStack;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>

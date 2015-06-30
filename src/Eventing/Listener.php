@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>

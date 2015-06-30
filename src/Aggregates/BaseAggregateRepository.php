@@ -2,8 +2,8 @@
 
 namespace Domain\Aggregates;
 
-use Domain\Events\EventStore;
-use Domain\Events\EventBus;
+use Domain\Eventing\EventStore;
+use Domain\Eventing\EventBus;
 use Domain\Identity\Identity;
 use Domain\Snapshotting\SnapshotStore;
 use Domain\Snapshotting\SnapshottingPolicy;
@@ -50,12 +50,7 @@ abstract class BaseAggregateRepository implements AggregateRepository
     public function save(RecordsEvents $aggregate)
     {
         $uncommitted = $aggregate->getChanges();
-        $this->eventStore->commit($uncommitted);
-
-        $committedStream = new \Domain\Events\CommittedEvents(
-            $aggregate->getIdentity(),
-            $uncommitted->getEvents()
-        );
+        $committedStream = $this->eventStore->commit($uncommitted);
 
         // consider eventual consistency
         if (!is_null($this->eventBus)) {
@@ -94,6 +89,7 @@ abstract class BaseAggregateRepository implements AggregateRepository
 
         $aggregateHistory = $this->eventStore->getAggregateHistoryFor($aggregateId);
         $fqn = $this->getAggregateRootFqcn();
+
         return $fqn::reconstituteFrom($aggregateHistory);
     }
 
@@ -125,7 +121,7 @@ abstract class BaseAggregateRepository implements AggregateRepository
 
         if ($aggregate->hasChanges()) {
             $aggregate = $aggregate::reconstituteFrom(
-                new \Domain\Events\CommittedEvents(
+                new \Domain\Eventing\CommittedEvents(
                     $aggregate->getIdentity(),
                     $aggregate->getChanges()
                 )

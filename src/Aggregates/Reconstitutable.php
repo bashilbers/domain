@@ -2,7 +2,7 @@
 
 namespace Domain\Aggregates;
 
-use Domain\Events\CommittedEvents;
+use Domain\Eventing\CommittedEvents;
 
 /**
  * Loading our Aggregate back in history, simply involves reconstituting it

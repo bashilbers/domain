@@ -4,7 +4,7 @@ namespace Domain\Tests\Events;
 
 use Domain\Tests\Fixtures\Identity\BasketId;
 use Domain\Tests\Fixtures\Aggregates\Basket;
-use Domain\Events\RedisEventStore;
+use Domain\Eventing\RedisEventStore;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tests\Fixtures\Identity;
+namespace Domain\Fixtures\Identity;
 
 use Domain\Identity\Identity;
 use Domain\Identity\Generator;

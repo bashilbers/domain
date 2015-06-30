@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Events\When;
+namespace Domain\Eventing\When;
 
-use Domain\Events\DomainEvent;
+use Domain\Eventing\DomainEvent;
 use Domain\Tools\ClassToString;
 
 /**
@@ -19,7 +19,7 @@ trait ConventionBasedWhen
     protected function when(DomainEvent $event)
     {
         $method = 'when' . ClassToString::short($event);
-        if(is_callable([$this, $method])) {
+        if (is_callable([$this, $method])) {
             $this->{$method}($event);
         }
     }
@@ -30,7 +30,7 @@ trait ConventionBasedWhen
      */
     protected function whenAll($events)
     {
-        foreach($events as $event) {
+        foreach ($events as $event) {
             $this->when($event);
         }
     }

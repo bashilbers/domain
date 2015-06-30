@@ -2,10 +2,10 @@
 
 namespace Domain\Fixtures\Aggregates;
 
-use Domain\Tests\Fixtures\Identity\BasketId;
-use Domain\Tests\Fixtures\Identity\ProductId;
-use Domain\Tests\Fixtures\Events\BasketWasPickedUp;
-use Domain\Tests\Fixtures\Events\ProductWasAdded;
+use Domain\Fixtures\Identity\BasketId;
+use Domain\Fixtures\Identity\ProductId;
+use Domain\Fixtures\Events\BasketWasPickedUp;
+use Domain\Fixtures\Events\ProductWasAdded;
 use Domain\Aggregates\BaseAggregateRoot;
 
 /**

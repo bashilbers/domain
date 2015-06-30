@@ -1,9 +1,9 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 use Domain\Identity\Identity;
-use Domain\Events\CommittedEvents;
+use Domain\Eventing\CommittedEvents;
 
 /**
  * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
@@ -21,7 +21,7 @@ final class FileEventStore implements EventStore
      * Serialize given events and save them do disk.
      * Actually, each event is a new line inside a single file for each aggregate
      *
-     * @param \Domain\Events\UncommittedEvents $events
+     * @param \Domain\Eventing\UncommittedEvents $events
      */
     public function commit(UncommittedEvents $events)
     {
@@ -46,7 +46,7 @@ final class FileEventStore implements EventStore
      * @param \Domain\Identity\Identity $id
      * @param integer $offset
      * @param integer $max
-     * @return \Domain\Events\CommittedEvents
+     * @return \Domain\Eventing\CommittedEvents
      */
     public function getAggregateHistoryFor(Identity $id, $offset = 0, $max = null)
     {

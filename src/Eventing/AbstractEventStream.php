@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Events;
+namespace Domain\Eventing;
 
 /**
  * Description of AbstractEventStream
@@ -26,5 +26,20 @@ abstract class AbstractEventStream implements \IteratorAggregate, \Countable
     public function count()
     {
         return count($this->events);
+    }
+
+    public function first()
+    {
+        return array_shift(array_values($this->events));
+    }
+
+    public function last()
+    {
+        return array_pop(array_values($this->events));
+    }
+
+    public function getEvents()
+    {
+        return $this->events;
     }
 }

@@ -33,8 +33,7 @@ class FileSnapshotStore implements SnapshotStore
         $it = Finder::create()
             ->files()
             ->name((string) $id . '-*')
-            ->in($this->dataPath)
-        ;
+            ->in($this->dataPath);
 
         $files = iterator_to_array($it);
 
@@ -71,7 +70,6 @@ class FileSnapshotStore implements SnapshotStore
         $stream = fopen($this->dataPath . '/' . $versionFile, 'w');
 
         fwrite($stream, serialize($root));
-
         fclose($stream);
     }
 }
