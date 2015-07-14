@@ -21,7 +21,7 @@ tools:
   php_sim:
     filter:
       excluded_paths:
-        spec/*
+        - spec/*
 
     sensiolabs_security_checker: true
 
