@@ -1,36 +1,27 @@
 filter:
-  excluded_paths:
-    - vendor/*
-    - spec/*
+  paths: [src/*]
+  excluded_paths: [vendor/*, spec/*]
 
 tools:
-  php_analyzer:
-    filter:
-      excluded_paths:
-        - spec/*
-
+  php_analyzer: true
   php_mess_detector: true
-
+  php_changetracking: true
+  external_code_coverage: true
+  php_hhvm: true
+  php_pdepend: true
+  php_sim: true
+  sensiolabs_security_checker: true
+  php_loc: true
+  php_cpd: true
   php_code_sniffer:
-    filter:
-      excluded_paths:
-        - spec/*
+    enabled: true
     config:
       standard: PSR2
+  php_cs_fixer:
+    enabled: true
+    config:
+      level: psr2
 
-  php_sim:
-    filter:
-      excluded_paths:
-        - spec/*
-
-    sensiolabs_security_checker: true
-
-    php_pdepend: true
-
-    php_loc:
-      enabled: true
-      excluded_dirs: [vendor]
-
-    php_cpd:
-      enabled: true
-      excluded_dirs: [vendor]
+checks:
+  php:
+    code_rating: true
