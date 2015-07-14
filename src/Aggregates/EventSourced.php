@@ -56,7 +56,7 @@ trait EventSourced
      * @param DomainEvent $event
      * @return static
      */
-    protected function recordThat(DomainEvent $event)
+    public function recordThat(DomainEvent $event)
     {
         $this->bumpVersion();
 
@@ -65,7 +65,7 @@ trait EventSourced
         }
 
         $this->uncommittedEvents->append($event);
-        $this->when($event); // not sure
+        $this->when($event);
 
         return $this;
     }

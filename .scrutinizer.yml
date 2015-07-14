@@ -1,7 +1,6 @@
 filter:
   paths: [src/*]
   excluded_paths: [vendor/*, spec/*]
-
 tools:
   php_analyzer: true
   php_mess_detector: true
@@ -21,7 +20,6 @@ tools:
     enabled: true
     config:
       level: psr2
-
 checks:
   php:
     code_rating: true
