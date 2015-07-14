@@ -37,7 +37,7 @@ done
 if [ "$FILES" != "" ]
 then
     echo "Running Code Sniffer..."
-    ./vendor/bin/phpcs --standard=PSR2 --encoding=utf-8 -n -p $FILES
+    ./vendor/bin/phpcs --standard=PSR2 --encoding=utf-8 -n -p --ignore=*/spec/*,*/tests/*,*/vendor/* $FILES
     if [ $? != 0 ]
     then
         error "Aborting commit due to files not respecting the coding standard"
@@ -49,12 +49,49 @@ then
     echo "Running mess detector..."
     for FILE in $SFILES
     do
-        php ./vendor/bin/phpmd "$FILE"
+        php ./vendor/bin/phpmd "$FILE" text controversial --exclude=*/spec/*
         if [ $? != 0 ]
         then
             warning "Mess detected! Commit was not aborted"
         fi
     done
+fi
+
+
+if [ -f ./vendor/bin/phpspec ]
+then
+    echo "Running PHPSpec..."
+    ./vendor/bin/phpspec run
+    if [ $? -ne 0 ]
+    then
+       error "Aborting commit due to PHPspec complaining about your staged code"
+    fi
+fi
+
+if [ -f ./vendor/bin/phpunit ]
+then
+    echo "Running PHPunit..."
+    ./vendor/bin/phpunit tests
+    if [ $? -ne 0 ]
+    then
+       error "Aborting commit due to PHPunit complaining about your staged code"
+    fi
+fi
+
+if [ -f ./vendor/bin/php-cs-fixer ]
+then
+    echo "Running codestyle fixer in dry-run mode..."
+    ./vendor/bin/php-cs-fixer fix --quiet --dry-run src
+    if [ $? -ne 0 ]
+    then
+       error "PHPCS for src/ has failed - commit aborted"
+    fi
+
+    ./vendor/bin/php-cs-fixer fix --quiet --fixers=-visibility --dry-run spec
+    if [ $? -ne 0 ]
+    then
+       error "PHPCS for spec/ has failed - commit aborted"
+    fi
 fi
 
 exit $?

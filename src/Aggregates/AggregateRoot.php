@@ -5,19 +5,20 @@ namespace Domain\Aggregates;
 use Domain\Identity\Identity;
 
 /**
- * Interface AggregateRoot
- * @package Domain\Aggregates
+ * Each concrete aggretegateRoot should implement default "aggregate" functionality
+ *
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 interface AggregateRoot extends RecordsEvents, Reconstitutable, Versioned
 {
     /**
-     * @return mixed
+     * @return Identity
      */
     public function getIdentity();
 
     /**
      * @param Identity $identity
-     * @return mixed
+     * @return AggregateRoot
      */
     public static function fromIdentity(Identity $identity);
 }

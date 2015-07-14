@@ -29,14 +29,13 @@ class CommittedEvents extends AbstractEventStream
         if (count($events) > 0) {
             $this->fromVersion = array_shift(array_values($events));
             $this->toVersion = array_pop(array_values($events));
+            reset($this->events);
         }
-
-        reset($this->events);
     }
 
     public function getFromVersion()
     {
-        return $this->fromVersion;
+        return $this->fromVersion->version;
     }
 
     public function getToVersion()

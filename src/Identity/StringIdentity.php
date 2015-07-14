@@ -3,7 +3,7 @@
 namespace Domain\Identity;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 abstract class StringIdentity implements Identity
 {
@@ -20,6 +20,7 @@ abstract class StringIdentity implements Identity
 
     /**
      * Creates an identifier object from a string representation
+     *
      * @param $string
      * @return static
      */
@@ -30,6 +31,7 @@ abstract class StringIdentity implements Identity
 
     /**
      * Returns a string that can be parsed by fromString()
+     *
      * @return string
      */
     public function __toString()
@@ -39,6 +41,7 @@ abstract class StringIdentity implements Identity
 
     /**
      * Compares the object to another IdentifiesAggregate object. Returns true if both have the same type and value.
+     *
      * @param Identity $other
      * @return boolean
      */
@@ -47,6 +50,11 @@ abstract class StringIdentity implements Identity
         return $other instanceof static && $this->string == $other->string;
     }
 
+    /**
+     * Make sure that the input is in fact a string
+     *
+     * @param $string
+     */
     private static function guardString($string)
     {
         if (!is_string($string) || empty($string)) {

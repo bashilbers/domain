@@ -12,7 +12,7 @@ use Domain\Eventing\DomainEvent;
  * An object that records the events that happened to it since the last time it was cleared, or since it was
  * restored from persistence.
  *
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 interface RecordsEvents
 {

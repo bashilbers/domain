@@ -15,6 +15,8 @@ use Domain\Eventing\CommittedEvents;
 interface Reconstitutable
 {
     /**
+     * Reconstructs given concrete aggregate and applies the history
+     *
      * @param CommittedEvents $history
      * @return AggregateRoot
      */

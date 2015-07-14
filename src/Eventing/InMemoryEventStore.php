@@ -9,8 +9,16 @@ use Domain\Identity\Identity;
  */
 final class InMemoryEventStore implements EventStore
 {
-    private $events = [];
+    /**
+     * Events in memory
+     * @var array
+     */
+    protected $events = [];
 
+    /**
+     * @param UncommittedEvents $stream
+     * @return CommittedEvents
+     */
     public function commit(UncommittedEvents $stream)
     {
         $aggregateId = $stream->first()->getAggregateIdentity();
@@ -22,6 +30,14 @@ final class InMemoryEventStore implements EventStore
         return new CommittedEvents($aggregateId, $stream->getEvents());
     }
 
+    /**
+     * Gets the events stored as memory and wraps it in \CommittedEvents
+     *
+     * @param Identity $id
+     * @param int $offset
+     * @param null $max
+     * @return CommittedEvents
+     */
     public function getAggregateHistoryFor(Identity $id, $offset = 0, $max = null)
     {
         return new CommittedEvents(

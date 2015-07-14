@@ -5,7 +5,7 @@ namespace Domain\Eventing;
 /**
  * Something that happened in the past, that is of importance to the business.
  *
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 interface DomainEvent extends \Serializable
 {

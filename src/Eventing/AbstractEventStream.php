@@ -3,8 +3,6 @@
 namespace Domain\Eventing;
 
 /**
- * Description of AbstractEventStream
- *
  * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
  */
 abstract class AbstractEventStream implements \IteratorAggregate, \Countable

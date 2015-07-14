@@ -1,6 +1,5 @@
 {
     "name": "bashilbers/domain",
-    "version": "0.0.1",
     "description": "Adds interfaces and base classes for DomainEvents, Aggregates, Snapshotting (the write part of CQRS). Modeled after DPC14",
     "authors": [
         {
@@ -11,14 +10,15 @@
     "suggest": {
         "predis/predis": "For saving DomainEvents in Redis",
         "symfony/finder": "For file based event/snapshot stores",
-        "league/tactician": "Command handling"
+        "league/tactician": "For command handling"
     },
     "require-dev": {
         "phpspec/phpspec": "2.*",
         "symfony/finder": "~2.5",
         "predis/predis": "*",
         "phpmd/phpmd": "2.*",
-        "squizlabs/php_codesniffer": "2.*"
+        "squizlabs/php_codesniffer": "2.*",
+        "fabpot/php-cs-fixer": "1.*"
     },
     "autoload": {
         "psr-4": { 
@@ -27,7 +27,6 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Domain\\Tests\\": "tests/",
             "Domain\\Fixtures\\": "fixtures/"
         }
     },

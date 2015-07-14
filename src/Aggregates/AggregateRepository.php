@@ -7,12 +7,12 @@ use Domain\Identity\Identity;
 /**
  * A collection oriented Repository for eventSourced Aggregates
  *
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 interface AggregateRepository
 {
     /**
-     * @param IdentifiesAggregate $aggregateId
+     * @param Identity $aggregateId
      * @return IsEventSourced
      */
     public function get(Identity $aggregateId);

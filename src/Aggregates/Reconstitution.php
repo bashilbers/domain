@@ -3,24 +3,41 @@
 namespace Domain\Aggregates;
 
 use Domain\Eventing\CommittedEvents;
+use Domain\Identity\Identity;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * Sane default behaviour and state for Reconstituable aggregates
+ *
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 trait Reconstitution
 {
     /**
-     * @param CommitedEvents $history
+     * Reconstructs given concrete aggregate and applies the history
+     *
+     * @param CommittedEvents $history
      * @return static
      */
     public static function reconstituteFrom(CommittedEvents $history)
     {
-        /** @var $instance Reconstitution */
         $instance = static::fromIdentity($history->getIdentity());
         $instance->whenAll($history); // trait will call when{format}(event)
 
         return $instance;
     }
 
-    abstract protected function whenAll($events);
+    /**
+     * This trait requires a whenAll method on the concrete class
+     *
+     * @param $events
+     */
+    abstract protected function whenAll(CommittedEvents $events);
+
+    /**
+     * This trait requires a fromIdentity method on the concrete class
+     *
+     * @param Identity $identity
+     * @return Aggregate
+     */
+    abstract public static function fromIdentity(Identity $identity);
 }

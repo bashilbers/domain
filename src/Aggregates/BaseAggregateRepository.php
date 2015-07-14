@@ -10,16 +10,33 @@ use Domain\Snapshotting\SnapshottingPolicy;
 use Domain\Snapshotting\Policy\IntervalBased;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * Base class for concrete repositories which contains some sane defaults
+ *
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 abstract class BaseAggregateRepository implements AggregateRepository
 {
+    /**
+     * @var EventStore
+     */
     private $eventStore;
 
+    /**
+     * @var EventBus
+     */
     private $eventBus;
 
+    /**
+     * @var SnapshotStore
+     */
     private $snapshotStore;
 
+    /**
+     * @param EventStore $eventStore
+     * @param EventBus $eventBus
+     * @param SnapshotStore $snapshotStore
+     * @param SnapshottingPolicy $policy
+     */
     public function __construct(
         EventStore $eventStore,
         EventBus $eventBus = null,
@@ -46,6 +63,9 @@ abstract class BaseAggregateRepository implements AggregateRepository
      *
      * Snapsnots could be made if the policy allows it and this repo is
      * constructed with a storage for storing snapshots.
+     *
+     * @param RecordsEvents $aggregate
+     * @return CommittedEvents
      */
     public function save(RecordsEvents $aggregate)
     {
@@ -72,6 +92,9 @@ abstract class BaseAggregateRepository implements AggregateRepository
      * Fetching a single Aggregate is extremely easy: all we need to do is
      * reconstitute it from its history! Compare that to the complexity
      * of traditional ORMs.
+     *
+     * @param Identity $aggregateId
+     * @return AggregateRoot
      */
     public function get(Identity $aggregateId)
     {
@@ -79,7 +102,7 @@ abstract class BaseAggregateRepository implements AggregateRepository
             if (!($snapshot = $this->loadSnapshot($aggregateId))) {
                 $missing = $this->eventStore->getAggregateHistoryFor($aggregateId, $snapshot->getVersion());
 
-                if ($events) {
+                if ($missing->count() > 0) {
                     $snapshot->correctMissingHistory($missing);
                 }
 
@@ -93,13 +116,18 @@ abstract class BaseAggregateRepository implements AggregateRepository
         return $fqn::reconstituteFrom($aggregateHistory);
     }
 
+    /**
+     * Concrete repositories should define the Aggregate's FQCN
+     *
+     * @return string
+     */
     abstract protected function getAggregateRootFqcn();
 
     /**
      * Load a aggregate snapshot from the storage
      *
      * @param \Domain\Identity\Identity $id
-     * @return type
+     * @return Snapshot
      */
     public function loadSnapshot(Identity $id)
     {

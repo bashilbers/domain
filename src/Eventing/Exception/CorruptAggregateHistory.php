@@ -3,7 +3,7 @@
 namespace Domain\Eventing\Exception;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 final class CorruptAggregateHistory extends \Exception
 {

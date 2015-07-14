@@ -4,15 +4,16 @@ namespace Domain\Eventing\When;
 
 use Domain\Eventing\DomainEvent;
 use Domain\Tools\ClassToString;
+use Domain\Eventing\CommittedEvents;
 
 /**
- * Description of ConventionBasedWhen
- *
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 trait ConventionBasedWhen
 {
     /**
+     * Handle a single domain event
+     *
      * @param DomainEvent $event
      * @return void
      */
@@ -25,10 +26,12 @@ trait ConventionBasedWhen
     }
 
     /**
-     * @param \Traverseable $events
+     * Handle a committed event stream
+     *
+     * @param CommittedEvents $events
      * @return void
      */
-    protected function whenAll($events)
+    protected function whenAll(CommittedEvents $events)
     {
         foreach ($events as $event) {
             $this->when($event);

@@ -6,7 +6,7 @@ use Domain\Identity\Identity;
 use Domain\Tools\ClassToString;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 class TimeMachine
 {
@@ -19,10 +19,15 @@ class TimeMachine
         $this->store = $store;
     }
 
+    public function attachListener($eventName, Listener $listener)
+    {
+        $this->listeners[$eventName][] = $listener;
+    }
+
     public function attachListeners(array $listeners)
     {
         foreach ($listeners as $event => $listener) {
-            $this->listeners[$event][] = $listener;
+            $this->attachListener($event, $listener);
         }
 
         return $this;

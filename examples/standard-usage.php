@@ -21,7 +21,5 @@ $repo = new BasketRepository($eventStore);
 // the changes are saved into the store
 $repo->save($basket);
 
-// get the changes
+// get the changes from the store and reconstitute the aggregatee
 $reconstituted = $repo->get($basketId);
-
-var_dump($reconstituted);

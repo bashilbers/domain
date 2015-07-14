@@ -6,10 +6,16 @@ use Domain\Eventing\DomainEvent;
 use Domain\Eventing\UncommittedEvents;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * Sane default Behaviour and state for the RecordsEvents interface
+ *
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 trait EventSourced
 {
+    /**
+     * Collection of events that are not persisted yet
+     * @var UncommittedEvents
+     */
     private $uncommittedEvents;
 
     /**
@@ -64,12 +70,25 @@ trait EventSourced
         return $this;
     }
 
+    /**
+     * Increment the aggregate's version
+     *
+     * @return $this
+     */
     protected function bumpVersion()
     {
         $this->version++;
+
+        return $this;
     }
 
+    /**
+     * The concrete class should have this method
+     */
     abstract protected function when(DomainEvent $event);
 
+    /**
+     * The concrete class should have this method
+     */
     abstract protected function getIdentity();
 }

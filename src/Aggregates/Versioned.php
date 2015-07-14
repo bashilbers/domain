@@ -3,7 +3,7 @@
 namespace Domain\Aggregates;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 interface Versioned
 {

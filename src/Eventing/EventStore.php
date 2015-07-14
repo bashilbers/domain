@@ -16,7 +16,7 @@ interface EventStore
     public function commit(UncommittedEvents $events);
 
     /**
-     * @param IdentifiesAggregate $id
+     * @param Identity $id
      * @return CommittedEvents
      */
     public function getAggregateHistoryFor(Identity $id, $offset = 0, $max = null);
