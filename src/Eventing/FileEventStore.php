@@ -9,7 +9,6 @@ use Domain\Identity\Identity;
  */
 final class FileEventStore implements EventStore
 {
-
     private $dataPath;
 
     public function __construct($dataPath)
