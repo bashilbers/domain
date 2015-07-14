@@ -49,14 +49,13 @@ then
     echo "Running mess detector..."
     for FILE in $SFILES
     do
-        php ./vendor/bin/phpmd "$FILE" text controversial --exclude=*/spec/*
+        php ./vendor/bin/phpmd "$FILE" text controversial --exclude=/var/www/domain/spec/*
         if [ $? != 0 ]
         then
             warning "Mess detected! Commit was not aborted"
         fi
     done
 fi
-
 
 if [ -f ./vendor/bin/phpspec ]
 then
@@ -81,13 +80,13 @@ fi
 if [ -f ./vendor/bin/php-cs-fixer ]
 then
     echo "Running codestyle fixer in dry-run mode..."
-    ./vendor/bin/php-cs-fixer fix --quiet --dry-run src
+    ./vendor/bin/php-cs-fixer fix --verbose --dry-run --diff --level=psr2 src
     if [ $? -ne 0 ]
     then
        error "PHPCS for src/ has failed - commit aborted"
     fi
 
-    ./vendor/bin/php-cs-fixer fix --quiet --fixers=-visibility --dry-run spec
+    ./vendor/bin/php-cs-fixer fix --verbose --diff --fixers=-visibility --dry-run spec
     if [ $? -ne 0 ]
     then
        error "PHPCS for spec/ has failed - commit aborted"

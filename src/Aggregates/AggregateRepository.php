@@ -13,13 +13,13 @@ interface AggregateRepository
 {
     /**
      * @param Identity $aggregateId
-     * @return IsEventSourced
+     * @return AggregateRoot
      */
     public function get(Identity $aggregateId);
 
     /**
-     * @param RecordsEvents $aggregate
-     * @return void
+     * @param AggregateRoot $aggregate
+     * @return CommittedEvents
      */
-    public function save(RecordsEvents $aggregate);
+    public function save(AggregateRoot $aggregate);
 }

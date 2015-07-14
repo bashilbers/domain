@@ -8,6 +8,7 @@ use Domain\Identity\Identity;
 use Domain\Snapshotting\SnapshotStore;
 use Domain\Snapshotting\SnapshottingPolicy;
 use Domain\Snapshotting\Policy\IntervalBased;
+use Domain\Eventing\CommittedEvents;
 
 /**
  * Base class for concrete repositories which contains some sane defaults
@@ -64,10 +65,10 @@ abstract class BaseAggregateRepository implements AggregateRepository
      * Snapsnots could be made if the policy allows it and this repo is
      * constructed with a storage for storing snapshots.
      *
-     * @param RecordsEvents $aggregate
+     * @param AggregateRoot $aggregate
      * @return CommittedEvents
      */
-    public function save(RecordsEvents $aggregate)
+    public function save(AggregateRoot $aggregate)
     {
         $uncommitted = $aggregate->getChanges();
         $committedStream = $this->eventStore->commit($uncommitted);
@@ -128,9 +129,14 @@ abstract class BaseAggregateRepository implements AggregateRepository
      *
      * @param \Domain\Identity\Identity $id
      * @return Snapshot
+     * @throws \Exception when no snapshotStore was attached
      */
     public function loadSnapshot(Identity $id)
     {
+        if (is_null($this->snapshotStore)) {
+            throw new \Exception('Unable to get snapshot; No store attached');
+        }
+
         return $this->snapshotStore->get($id);
     }
 
@@ -139,7 +145,7 @@ abstract class BaseAggregateRepository implements AggregateRepository
      *
      * @param \Domain\Aggregates\AggregateRoot $aggregate
      * @return type
-     * @throws \Exception
+     * @throws \Exception when no snapshotStore was attached
      */
     public function saveSnapshot(AggregateRoot $aggregate)
     {
@@ -149,9 +155,9 @@ abstract class BaseAggregateRepository implements AggregateRepository
 
         if ($aggregate->hasChanges()) {
             $aggregate = $aggregate::reconstituteFrom(
-                new \Domain\Eventing\CommittedEvents(
+                new CommittedEvents(
                     $aggregate->getIdentity(),
-                    $aggregate->getChanges()
+                    $aggregate->getChanges()->getEvents()
                 )
             );
         }

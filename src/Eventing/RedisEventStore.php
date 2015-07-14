@@ -3,7 +3,6 @@
 namespace Domain\Eventing;
 
 use Predis\Client;
-
 use Domain\Identity\Identity;
 use Domain\Eventing\CommittedEvents;
 

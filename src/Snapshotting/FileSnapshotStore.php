@@ -9,7 +9,6 @@
 namespace Domain\Snapshotting;
 
 use Symfony\Component\Finder\Finder;
-
 use Domain\Identity\Identity;
 use Domain\Aggregates\AggregateRoot;
 use Domain\Snapshotting\Exception\IdenticalSnapshot;

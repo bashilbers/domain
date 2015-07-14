@@ -9,5 +9,4 @@ namespace Domain\Snapshotting\Exception;
  */
 class IdenticalSnapshot extends \Exception
 {
-
 }

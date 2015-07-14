@@ -4,7 +4,6 @@ namespace spec\Domain\Identity;
 
 use Domain\Identity\StringIdentity;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class StringIdentitySpec extends ObjectBehavior
 {
@@ -37,4 +36,5 @@ class StringIdentitySpec extends ObjectBehavior
 }
 
 class DummyStringIdentity extends StringIdentity
-{}
+{
+}

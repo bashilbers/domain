@@ -2,7 +2,7 @@
 
 namespace Domain\Eventing\Exception;
 
-class InvalidMiddlewareException extends \InvalidArgumentException implements Exception
+class InvalidMiddleWare extends \InvalidArgumentException implements Exception
 {
     public static function forMiddleware($middleware)
     {

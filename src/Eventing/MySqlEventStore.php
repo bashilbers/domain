@@ -5,7 +5,6 @@ namespace Domain\Eventing;
 use Domain\Identity\Identity;
 use Domain\Eventing\CommittedEvents;
 use Domain\Tools\ClassToString;
-
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;

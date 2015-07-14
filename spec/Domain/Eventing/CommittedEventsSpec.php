@@ -6,7 +6,6 @@ use Domain\Fixtures\Events\BasketWasPickedUp;
 use Domain\Fixtures\Events\ProductWasAdded;
 use Domain\Fixtures\Identity\ProductId;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Domain\Fixtures\Identity\BasketId;
 
 class CommittedEventsSpec extends ObjectBehavior
@@ -42,10 +41,7 @@ class CommittedEventsSpec extends ObjectBehavior
         $firstEvent = new BasketWasPickedUp($basketId);
         $secondEvent = new ProductWasAdded($basketId, ProductId::generate());
 
-        $this->beConstructedWith($basketId, [
-            $firstEvent,
-            $secondEvent
-        ]);
+        $this->beConstructedWith($basketId, [$firstEvent, $secondEvent]);
 
         $this->first()->shouldBe($firstEvent);
         $this->last()->shouldBe($secondEvent);

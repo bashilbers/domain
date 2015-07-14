@@ -20,7 +20,6 @@ class DirectEventBus implements EventBus
 
     public function publish(CommittedEvents $events)
     {
-
     }
 
     public function subscribe($eventName, Listener $listener)

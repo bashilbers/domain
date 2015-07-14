@@ -11,11 +11,9 @@ class NullEventStore implements EventStore
 {
     public function commit(UncommittedEvents $events)
     {
-
     }
 
     public function getAggregateHistoryFor(Identity $id, $offset = 0, $max = null)
     {
-
     }
 }

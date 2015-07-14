@@ -3,7 +3,6 @@
 namespace spec\Domain\Eventing;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Domain\Fixtures\Identity\BasketId;
 use Domain\Fixtures\Events\BasketWasPickedUp;
 

@@ -7,5 +7,4 @@ namespace Domain\Eventing\Exception;
  */
 final class CorruptAggregateHistory extends \Exception
 {
-
 }

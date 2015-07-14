@@ -7,5 +7,4 @@ namespace Domain\Aggregates\Exception;
  */
 final class ArrayIsImmutable extends \BadMethodCallException
 {
-
 }

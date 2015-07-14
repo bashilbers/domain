@@ -6,7 +6,6 @@ use Domain\Eventing\UncommittedEvents;
 use Domain\Fixtures\Identity\BasketId;
 use Domain\Fixtures\Events\BasketWasPickedUp;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class InMemoryEventStoreSpec extends ObjectBehavior
 {

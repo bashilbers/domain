@@ -2,10 +2,11 @@
 
 namespace spec\Domain\Aggregates;
 
+use Domain\Fixtures\Aggregates\Basket;
 use Domain\Fixtures\Identity\BasketId;
 use Domain\Fixtures\Identity\ProductId;
+use Domain\Eventing\CommittedEvents;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class BaseAggregateRootSpec extends ObjectBehavior
 {
@@ -55,7 +56,15 @@ class BaseAggregateRootSpec extends ObjectBehavior
 
     function it_should_be_able_to_restore_to_a_previous_state_via_history()
     {
+        $basketId = BasketId::generate();
+        $aggregate = Basket::pickup($basketId);
 
+        $committedEvents = new CommittedEvents(
+            $basketId,
+            $aggregate->getChanges()->getEvents()
+        );
+
+        $this::reconstituteFrom($committedEvents)->getIdentity()->shouldBe($basketId);
     }
 
     function it_should_know_the_current_version()
