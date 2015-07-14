@@ -3,13 +3,13 @@
 namespace Domain\Eventing;
 
 use Domain\Identity\Identity;
-use Domain\Eventing\CommittedEvents;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 final class FileEventStore implements EventStore
 {
+
     private $dataPath;
 
     public function __construct($dataPath)
@@ -22,6 +22,7 @@ final class FileEventStore implements EventStore
      * Actually, each event is a new line inside a single file for each aggregate
      *
      * @param \Domain\Eventing\UncommittedEvents $events
+     * @return void
      */
     public function commit(UncommittedEvents $events)
     {
@@ -64,8 +65,6 @@ final class FileEventStore implements EventStore
             if ($i < $offset) {
                 continue;
             }
-
-            //var_dump(fgets($stream)); echo PHP_EOL;
 
             $events[] = unserialize(fgets($stream));
             ++$i;

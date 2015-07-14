@@ -6,7 +6,7 @@ use Domain\Aggregates\AggregateRoot;
 use Domain\Identity\Identity;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 interface SnapshotStore
 {

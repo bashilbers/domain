@@ -6,7 +6,7 @@ use Domain\Aggregates\AggregateRoot;
 use Domain\Eventing\CommittedEvents;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 class Snapshot
 {
@@ -40,7 +40,7 @@ class Snapshot
 
     public function getCreationDate()
     {
-        return $this->creationDate();
+        return $this->creationDate;
     }
 
     /**

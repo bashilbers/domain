@@ -5,7 +5,7 @@ namespace Domain\Eventing;
 use Domain\Eventing\Exception\CorrupHandlerStack;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 class DirectEventBus implements EventBus
 {

@@ -7,7 +7,7 @@ use Domain\Fixtures\Identity\ProductId;
 use Domain\Eventing\DomainEvent;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bas.hilbers@gmail.com>
  */
 final class ProductWasAdded implements DomainEvent
 {

@@ -49,7 +49,7 @@ class TimeMachine
                     call_user_func($listener, $event);
                 }
             } else {
-                call_user_func($listener, $event);
+                call_user_func($this->listeners[$method], $event);
             }
         }
 

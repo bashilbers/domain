@@ -3,7 +3,7 @@
 namespace Domain\Identity;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 abstract class UuidIdentity implements Identity, Generator
 {

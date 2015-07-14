@@ -57,6 +57,18 @@ abstract class BaseAggregateRoot implements AggregateRoot
     }
 
     /**
+     * Increment the aggregate's version
+     *
+     * @return $this
+     */
+    protected function bumpVersion()
+    {
+        $this->version++;
+
+        return $this;
+    }
+
+    /**
      * Get aggregate version
      *
      * @return int

@@ -6,7 +6,7 @@ use Domain\Fixtures\Identity\BasketId;
 use Domain\Eventing\DomainEvent;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 final class BasketWasPickedUp implements DomainEvent
 {

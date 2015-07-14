@@ -6,7 +6,7 @@ use Domain\Aggregates\AggregateRoot;
 use Domain\Snapshotting\SnapshottingPolicy;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 class IntervalBased implements SnapshottingPolicy
 {

@@ -3,9 +3,8 @@
 namespace Domain\Eventing\Exception;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 final class CorrupHandlerStack extends \Exception
 {
-    //put your code here
 }

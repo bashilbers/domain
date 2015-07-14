@@ -5,7 +5,7 @@ namespace Domain\Snapshotting;
 use Domain\Aggregates\AggregateRoot;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 interface SnapshottingPolicy
 {

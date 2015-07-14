@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Domain\Snapshotting;
 
 use Symfony\Component\Finder\Finder;
@@ -14,9 +8,7 @@ use Domain\Aggregates\AggregateRoot;
 use Domain\Snapshotting\Exception\IdenticalSnapshot;
 
 /**
- * Description of FileSnapshotStore
- *
- * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 class FileSnapshotStore implements SnapshotStore
 {

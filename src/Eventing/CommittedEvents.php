@@ -6,7 +6,7 @@ use Domain\Identity\Identity;
 use Domain\Eventing\Exception\CorruptAggregateHistory;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@adchieve.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 class CommittedEvents extends AbstractEventStream
 {

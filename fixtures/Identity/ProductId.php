@@ -6,7 +6,7 @@ use Domain\Identity\Identity;
 use Domain\Identity\Generator;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 class ProductId implements Identity, Generator
 {

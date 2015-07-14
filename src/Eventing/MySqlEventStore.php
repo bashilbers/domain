@@ -3,17 +3,19 @@
 namespace Domain\Eventing;
 
 use Domain\Identity\Identity;
-use Domain\Eventing\CommittedEvents;
 use Domain\Tools\ClassToString;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 class MySqlEventStore implements EventStore
 {
+    /**
+     * @var Connection
+     */
     private $conn;
 
     public function __construct(Connection $conn)
@@ -37,18 +39,6 @@ class MySqlEventStore implements EventStore
 
         $streamTable = $schema->createTable('aggregate_events');
 
-        /*
-
-        $streamTable->addColumn('eventId', 'string', array("length" => 128));
-        $streamTable->addColumn('identity', 'string');
-        $streamTable->addColumn('sourceVersion', 'integer');
-        $streamTable->addColumn('event', 'text');
-        $streamTable->addColumn('payload', 'text');
-        $streamTable->addColumn('eventVersion', 'decimal');
-        $streamTable->addColumn('timestamp', 'integer');
-        $streamTable->setPrimaryKey(array('eventId'));
-         */
-
         $streamTable->addColumn('id', 'integer')
             ->setAutoincrement(true);
         $streamTable->addColumn('identity', 'string')
@@ -64,10 +54,9 @@ class MySqlEventStore implements EventStore
 
     public function commit(UncommittedEvents $events)
     {
-        $query =
-            'INSERT INTO `aggregate_events` (`identity`, `event`, `data`)' .
-            'VALUES (:identity, :event, :data)'
-        ;
+        $query = '
+            INSERT INTO `aggregate_events` (`identity`, `event`, `data`)
+            VALUES (:identity, :event, :data)';
 
         $pdo = $this->conn->getWrappedConnection();
 
@@ -85,7 +74,6 @@ class MySqlEventStore implements EventStore
 
                 $pdo->commit();
             } catch (\PDOException $ex) {
-                // something went wrong rollback!
                 $pdo->rollBack();
                 throw $ex;
             }

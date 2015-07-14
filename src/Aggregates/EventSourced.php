@@ -70,17 +70,7 @@ trait EventSourced
         return $this;
     }
 
-    /**
-     * Increment the aggregate's version
-     *
-     * @return $this
-     */
-    protected function bumpVersion()
-    {
-        $this->version++;
-
-        return $this;
-    }
+    abstract protected function bumpVersion();
 
     /**
      * The concrete class should have this method

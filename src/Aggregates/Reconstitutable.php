@@ -10,7 +10,7 @@ use Domain\Eventing\CommittedEvents;
  * This concept is called Event Sourcing.
  * The events are the single source of elements that make up the Aggregate.
  *
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 interface Reconstitutable
 {

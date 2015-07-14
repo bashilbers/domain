@@ -7,7 +7,7 @@ use Domain\Identity\Identity;
 use Domain\Eventing\CommittedEvents;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 final class RedisEventStore implements EventStore
 {

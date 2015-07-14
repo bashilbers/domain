@@ -33,6 +33,11 @@ abstract class BaseAggregateRepository implements AggregateRepository
     private $snapshotStore;
 
     /**
+     * @var SnapshottingPolicy
+     */
+    private $snapshottingPolicy;
+
+    /**
      * @param EventStore $eventStore
      * @param EventBus $eventBus
      * @param SnapshotStore $snapshotStore

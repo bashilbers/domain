@@ -21,7 +21,7 @@ trait Reconstitution
     public static function reconstituteFrom(CommittedEvents $history)
     {
         $instance = static::fromIdentity($history->getIdentity());
-        $instance->whenAll($history); // trait will call when{format}(event)
+        $instance->whenAll($history);
 
         return $instance;
     }

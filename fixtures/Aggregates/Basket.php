@@ -9,7 +9,7 @@ use Domain\Fixtures\Events\ProductWasAdded;
 use Domain\Aggregates\BaseAggregateRoot;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@tribal-im.com.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 final class Basket extends BaseAggregateRoot
 {

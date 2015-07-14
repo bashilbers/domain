@@ -5,7 +5,7 @@ namespace Domain\Eventing;
 use Domain\Eventing\Exception\InvalidMiddlewareException;
 
 /**
- * @author Sebastiaan Hilbers <bas.hilbers@gmail.com>
+ * @author Sebastiaan Hilbers <bashilbers@gmail.com>
  */
 class EventBus
 {
