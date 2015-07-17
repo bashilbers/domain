@@ -1,4 +1,6 @@
 # bashilbers/domain
+
+[![Join the chat at https://gitter.im/bashilbers/domain](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bashilbers/domain?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 A collection of interfaces and base classes for DomainEvents, Aggregates and Snapshotting (the write part of CQRS). Modeled after DPC14
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
