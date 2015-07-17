@@ -1,6 +1,8 @@
 # bashilbers/domain
 A collection of interfaces and base classes for DomainEvents, Aggregates and Snapshotting (the write part of CQRS). Modeled after DPC14
 
+[![Gitter chat](https://badges.gitter.im/bashilbers/domain.png)](https://gitter.im/bashilbers/domain)
+[![Latest Stable Version](https://poser.pugx.org/bashilbers/domain/v/stable)](https://packagist.org/packages/bashilbers/domain)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Travis build status](https://travis-ci.org/bashilbers/domain.svg)](https://travis-ci.org/bashilbers/domain)
 [![Scrutinizer build Status](https://scrutinizer-ci.com/g/bashilbers/domain/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bashilbers/domain/?branch=master)
@@ -30,6 +32,7 @@ I wanted to be involved with. This repo is not intended for production usage. It
 * [Simplebus](https://github.com/SimpleBus) - Generic busses for either commands or events
 
 ## Food for thoughts
+* [Mathias Verraes's Practical Event Sourcing presentation](http://joind.in/talk/view/10879)
 * [Greg Young's CQRS documents](https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf)
 
 ## Contributing
