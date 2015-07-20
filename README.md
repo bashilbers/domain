@@ -2,8 +2,9 @@
 A collection of interfaces and base classes for DomainEvents, Aggregates and Snapshotting (the write part of CQRS). Modeled after DPC14
 
 [![Gitter chat](https://badges.gitter.im/bashilbers/domain.png)](https://gitter.im/bashilbers/domain)
-[![PHP ~5.5][ico-engine]][lang]
+[![PHP ~5.5](https://img.shields.io/badge/php-%3E%3D5.5-8892BF.svg)](https://secure.php.net)
 [![Latest Stable Version](https://poser.pugx.org/bashilbers/domain/v/stable)](https://packagist.org/packages/bashilbers/domain)
+[![Dependency Status](https://www.versioneye.com/user/projects/55ad59a16437390017000025/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55ad59a16437390017000025)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Travis build status](https://travis-ci.org/bashilbers/domain.svg)](https://travis-ci.org/bashilbers/domain)
 [![Scrutinizer build Status](https://scrutinizer-ci.com/g/bashilbers/domain/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bashilbers/domain/?branch=master)
