@@ -2,6 +2,7 @@
 A collection of interfaces and base classes for DomainEvents, Aggregates and Snapshotting (the write part of CQRS). Modeled after DPC14
 
 [![Gitter chat](https://badges.gitter.im/bashilbers/domain.png)](https://gitter.im/bashilbers/domain)
+[![Latest Version][ico-package]][package]
 [![Latest Stable Version](https://poser.pugx.org/bashilbers/domain/v/stable)](https://packagist.org/packages/bashilbers/domain)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Travis build status](https://travis-ci.org/bashilbers/domain.svg)](https://travis-ci.org/bashilbers/domain)
